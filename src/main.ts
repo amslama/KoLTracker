@@ -3,8 +3,8 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from  './App.vue'
-import  MainMenu from './views/MainMenu/MainMenu.vue'
+import App from  './views/App/App.vue'
+import MainMenu from './views/MainMenu/MainMenu.vue'
 import Tracker from './views/Tracker/Tracker.vue'
 
 

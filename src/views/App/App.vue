@@ -6,8 +6,8 @@
         <q-toolbar-title>
           {{ pageTitle }}
         </q-toolbar-title>
-
-        <div> {{ 'here be hot links' }}</div>
+        <span><strong>Links: </strong></span>
+        <MenuButton v-for="option in toolbarOptions" :key="option.text" :route="option.route" :text="option.text" />
       </q-toolbar>
     </q-header>
 
@@ -20,13 +20,20 @@
 
 <script>
 import { ref } from 'vue'
-import MainMenu from './views/MainMenu/MainMenu.vue'
+import MainMenu from '../MainMenu/MainMenu.vue'
+import { TrackerOptions } from './constants'
+import MenuButton from '../../components/Buttons/MenuButton.vue'
 
 export default {
   name: 'LayoutDefault',
+  data(){
+    return {
+     toolbarOptions: TrackerOptions
+  }},
   components: {
-    MainMenu
-  },
+    MainMenu,
+    MenuButton
+},
 
   setup() {
     return {

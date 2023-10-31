@@ -1,7 +1,4 @@
-export interface LinkButton {
-    text: String;
-    route: String;
-}
+import type { LinkButton } from "../App/shared.constants"
 
 const TrackerButton: LinkButton = {
     text: 'Tracker',
