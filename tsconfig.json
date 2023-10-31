@@ -10,5 +10,17 @@
     {
       "path": "./tsconfig.cypress-ct.json"
     }
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "noImplicitAny":  false
+
+
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue" // Make sure this line is included
   ]
 }
