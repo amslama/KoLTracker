@@ -1,33 +1,54 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
-      <q-toolbar>
-        <q-toolbar-title>
-          {{ pageTitle }}
-        </q-toolbar-title>
-        <q-btn-group push>
-          <MenuButton
-            v-for="option in toolbarOptions"
-            :key="option.text"
-            :route="option.route"
-            :text="option.text"
-            :selected="option.text === selected"
-            @click="onPageSelect(option.text)"
-          />
-        </q-btn-group>
-      </q-toolbar>
-    </q-header>
+  <div class="q-pa-md">
 
-    <q-page-container>
-      <RouterView></RouterView>
-    </q-page-container>
-  </q-layout>
+    <q-layout view="hHh Lpr lff">
+      <q-header elevated class="glossy">
+        <q-toolbar class="bg-cyan-8">
+          <q-btn class="menu-button" flat @click="drawer = !drawer" round dense icon="menu" />
+
+          <q-toolbar-title>
+            {{ pageTitle }}
+          </q-toolbar-title>
+          <q-btn-group push>
+            <MenuButton v-for="option in toolbarOptions" :key="option.text" :route="option.route" :text="option.text"
+              :selected="option.text === selected" @click="onPageSelect(option.text)" />
+          </q-btn-group>
+        </q-toolbar>
+      </q-header>
+
+      <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500" bordered
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'">
+        <q-scroll-area class="fit">
+          <q-list>
+
+            <template v-for="(menuItem, index) in sideBarLinks" :key="index">
+              <q-item clickable :active="menuItem.text === 'Outbox'" v-ripple>
+                <q-item-section avatar>
+                  <q-icon :name="menuItem.icon" />
+                </q-item-section>
+                <q-item-section>
+                  {{ menuItem.label }}
+                </q-item-section>
+              </q-item>
+              <q-separator :key="'sep' + index" v-if="menuItem.separator" />
+            </template>
+
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
+
+      <q-page-container>
+        <RouterView></RouterView>
+      </q-page-container>
+    </q-layout>
+  </div>
 </template>
 
-<script>
+<style></style>
+
+<script lang="ts">
 import { ref } from 'vue'
-import MainMenu from '../MainMenu/MainMenu.vue'
-import { TrackerOptions } from './constants'
+import { TrackerOptions, SideBarLinks } from './constants'
 import MenuButton from '../../components/Buttons/MenuButton.vue'
 
 export default {
@@ -35,11 +56,12 @@ export default {
   data() {
     return {
       toolbarOptions: TrackerOptions,
-      selected: 'Add'
+      selected: 'Add',
+      drawer: true,
+      sideBarLinks: SideBarLinks
     }
   },
   components: {
-    MainMenu,
     MenuButton
   },
   methods: {

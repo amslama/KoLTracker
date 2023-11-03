@@ -11,10 +11,15 @@ import Tracker from './views/Tracker/Tracker.vue'
 import { Quasar } from 'quasar'
 import quasarUserOptions from './quasar-user-options'
 import * as VueRouter from 'vue-router'
+import AddView from './components/Tracker/Pages/Add.vue'
+import SellView from './components/Tracker/Pages/Sell.vue'
+import ViewView from './components/Tracker/Pages/Sell.vue'
 
     const routes = [
         { path: '/', component: MainMenu },
-        { path: '/tracker', component: Tracker },
+        { path: '/tracker', component: Tracker, children:[
+          {path: 'add', component:AddView}, { path: 'sell', component: SellView}, {path: 'view', component: ViewView}
+        ] },
       ]
 
 

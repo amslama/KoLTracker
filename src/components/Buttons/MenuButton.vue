@@ -1,13 +1,18 @@
 <template>
-  <q-btn push :to="route" :class="{ 'selected-choice': selected }">{{ text }} {{ selected }}</q-btn>
+  <q-btn class="menu-button" :flat="selected" push :to="route" v-bind:color="selected ? 'purple-8' : 'default'">{{
+    text }}
+  </q-btn>
 </template>
 
 <style>
-.q-btn {
-  background-color: teal;
+.menu-button {
+  width: fit-content !important;
+  color: pink;
 }
+
 .selected-choice {
-  background-color: darkcyan;
+  color: orange;
+  background-color: rgb(12, 139, 0);
 }
 </style>
 
