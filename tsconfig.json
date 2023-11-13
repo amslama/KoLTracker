@@ -13,7 +13,13 @@
   ],
   "compilerOptions": {
     "allowJs": true,
-    "noImplicitAny":  false
+    "checkJs":true,
+    "noImplicitAny":  false,
+    "outDir": "./dist",
+    "declarationDir": "./dist",
+    "declaration": true,
+  
+    "types": ["vue", "vuex"]
 
 
   },
