@@ -18,11 +18,12 @@
 
       <q-drawer v-model="drawer" show-if-above :width="200" :breakpoint="500" bordered
         :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'">
+        <q-icon :name="'cancel'"></q-icon>
+        <h5>My Stuff</h5>
         <q-scroll-area class="fit">
           <q-list>
-
             <template v-for="(menuItem, index) in sideBarLinks" :key="index">
-              <q-item clickable :active="menuItem.text === 'Outbox'" v-ripple>
+              <q-item clickable v-ripple>
                 <q-item-section avatar>
                   <q-icon :name="menuItem.icon" />
                 </q-item-section>
@@ -57,7 +58,7 @@ export default {
     return {
       toolbarOptions: TrackerOptions,
       selected: 'Add',
-      drawer: true,
+      drawer: ref(true),
       sideBarLinks: SideBarLinks
     }
   },
