@@ -1,13 +1,12 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
-export const useGlobalStore = defineStore({
-  id: 'global',
+export const useGlobalStore = defineStore('global', {
   state: () => ({
-    pageTitle: 'Main Menu',
+    pageTitle: 'Main Menu'
   }),
   actions: {
     setPageTitle(pageTitle: string) {
-      this.pageTitle = pageTitle;
-    },
-  },
-});
+      this.pageTitle = pageTitle
+    }
+  }
+})
