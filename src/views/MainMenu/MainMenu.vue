@@ -1,7 +1,12 @@
 <template>
   <q-page class="flex flex-center">
-    <LinkButton v-for="option in options" :key="option.text" :route="option.route" :text="option.text"
-      @click="onPageChange(option.text)" />
+    <LinkButton
+      v-for="option in options"
+      :key="option.text"
+      :route="option.route"
+      :text="option.text"
+      @click="onPageChange(option.text)"
+    />
   </q-page>
 </template>
 
@@ -14,16 +19,14 @@ export default {
   name: 'MainMenu',
   data() {
     return {
-      options: MenuOptions,
+      options: MenuOptions
     }
   },
   methods: {
-    onPageChange(name: String) {
-
-    }
+    onPageChange(name: String) {}
   },
   components: {
     LinkButton
-  },
+  }
 }
 </script>

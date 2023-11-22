@@ -13,7 +13,7 @@ import AddView from './components/Tracker/Pages/Add.vue'
 import SellView from './components/Tracker/Pages/Sell.vue'
 import ViewView from './components/Tracker/Pages/View.vue'
 import { createPinia } from 'pinia'
-import vuexBoot from './boot/veux'
+import { useGlobalStore } from './stores/global'
 
 const routes = [
   { path: '/', component: MainMenu },
@@ -33,12 +33,17 @@ const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
   routes // short for `routes: routes`
 })
+router.beforeEach(() => {
+  const store = useGlobalStore()
+  store.updatePageTitle()
+  return true
+})
 const pinia = createPinia()
 
 const app = createApp(App)
 
 app.use(Quasar, quasarUserOptions)
-app.use(vuexBoot)
+app.use(pinia)
 
 app.use(router)
 
