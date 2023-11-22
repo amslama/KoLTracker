@@ -44,7 +44,6 @@ const app = createApp(App)
 
 app.use(Quasar, quasarUserOptions)
 app.use(pinia)
-
 app.use(router)
 
 app.mount('#app')
