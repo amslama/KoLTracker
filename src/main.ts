@@ -30,12 +30,12 @@ const routes = [
 
 const router = VueRouter.createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-  history: VueRouter.createWebHashHistory(),
+  history: VueRouter.createWebHistory(),
   routes // short for `routes: routes`
 })
-router.beforeEach(() => {
+router.beforeEach((to) => {
   const store = useGlobalStore()
-  store.updatePageTitle()
+  store.updatePageTitle(to.fullPath)
   return true
 })
 const pinia = createPinia()

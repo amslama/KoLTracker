@@ -1,12 +1,7 @@
 <template>
   <q-page class="flex flex-center">
-    <LinkButton
-      v-for="option in options"
-      :key="option.text"
-      :route="option.route"
-      :text="option.text"
-      @click="onPageChange(option.text)"
-    />
+    <LinkButton v-for="option in options" :key="option.text" :route="option.route" :text="option.text"
+      @click="onPageChange(option.text)" />
   </q-page>
 </template>
 
@@ -14,7 +9,9 @@
 
 <script lang="ts">
 import LinkButton from '../../components/Buttons/LinkButton.vue'
+import { useGlobalStore } from '../../stores/global'
 import { MenuOptions } from './constants'
+
 export default {
   name: 'MainMenu',
   data() {
@@ -22,9 +19,10 @@ export default {
       options: MenuOptions
     }
   },
-  methods: {
-    onPageChange(name: String) {}
+  created() {
+    useGlobalStore().setMainPageName('Main Menu')
   },
+
   components: {
     LinkButton
   }

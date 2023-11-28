@@ -3,15 +3,27 @@ import { useRoute, useRouter } from 'vue-router'
 
 export const useGlobalStore = defineStore('global', {
   state: () => ({
-    pageTitle: 'Main Menu'
+    pageTitle: '',
+    mainPage: 'Main Menu',
+    subPage: ''
   }),
   actions: {
-    updatePageTitle(pageTitle: string) {
-      const route = useRoute()
+    setMainPageName(pageName: string) {this.mainPage = pageName; this.updatePageTitle()},
+    updatePageTitle(path?: string) {
+      console.log(path)
       // Extract the path and replace '/' with ' - '
-      console.log(route.path)
-      console.log(route)
-      this.pageTitle = route.path.replace(/\//g, ' - ') || 'Default Title'
+      this.pageTitle = this.mainPage
+      const splitPath = path?.split('/').slice(2) ?? [];
+      (splitPath ?? []).forEach((pathPart) => {
+        if(pathPart != ''){
+          this.pageTitle += ' - ' + this.capitalize(pathPart)
+        }
+      });
+    },
+
+    capitalize(word:string){
+      return word.charAt(0).toUpperCase()
+      + word.slice(1)
     }
   }
 })
